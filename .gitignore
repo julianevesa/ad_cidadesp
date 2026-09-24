@@ -1,3 +1,20 @@
-data/
+# Dados brutos do IBGE (arquivos grandes — não subir pro GitHub)
+data/*.csv
+
+# Resultado gerado pelo script de filtragem
+data/setores_censitarios_sp_capital.csv
+
+# Arquivos gerados pelo notebook de análise (reproduzíveis, não precisam ir pro Git)
 *.csv
+*.png
+*.html
+*.txt
+
+# Ambiente Python
+__pycache__/
+*.pyc
 .venv/
+venv/
+
+# Configurações de IDE
+.vscode/
