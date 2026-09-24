@@ -1,6 +1,6 @@
-# Análise de Vulnerabilidade Habitacional por Setor Censitário — São Paulo
+# Análise Habitacional por Setor Censitário — São Paulo
 
-Este projeto replica, para o município de São Paulo (capital), a metodologia de identificação de padrões de precariedade habitacional e infraestrutural por setor censitário desenvolvida originalmente para Araraquara — usando dados do Censo Demográfico 2022 (IBGE) e o algoritmo K-Means.
+Metodologia de identificação de padrões de precariedade habitacional e infraestrutural por setor censitário desenvolvida usando dados do Censo Demográfico 2022 (IBGE) e o algoritmo K-Means.
 
 ## Dados
 
