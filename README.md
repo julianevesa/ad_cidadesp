@@ -2,18 +2,44 @@
 
 Metodologia de identificação de padrões de precariedade habitacional e infraestrutural por setor censitário desenvolvida usando dados do Censo Demográfico 2022 (IBGE) e o algoritmo K-Means.
 
-## Dados
+## Como obter os dados
 
-Os dados brutos do Censo Demográfico 2022 foram baixados diretamente do IBGE (Agregados por Setores Censitários) e **não estão neste repositório**.
+Os arquivos do IBGE são muito grandes para o GitHub e, por isso, **não estão neste repositório**. Eles devem ser baixados da fonte oficial e colocados na pasta `data/`.
 
-Em vez disso, disponibilizamos apenas a **base já consolidada** — após a seleção dos setores de São Paulo capital e o merge das tabelas de Domicílios (1, 2 e 3) com a tabela Básico. Os arquivos originais do IBGE, por serem muito grandes e de fácil obtenção na fonte oficial, não são redistribuídos aqui.
+### 1. Baixe os arquivos no site do IBGE
 
-**Fonte original:** Censo Demográfico 2022 — Agregados por Setores Censitários (IBGE)
-🔗 Base consolidada (pós seleção e merge): _[adicionar link do Google Drive aqui]_
+Acesse a aba de downloads do Censo Demográfico 2022 no site do IBGE:
 
-Tabelas originais utilizadas na consolidação:
-- Características dos Domicílios 1, 2 e 3
-- IBGE Básico
+**https://www.ibge.gov.br/estatisticas/sociais/saude/22827-censo-demografico-2022.html?=&t=downloads**
+
+Na lista de pastas, abra:
+
+**Agregados por Setores Censitários → Agregados_por_Setor_[formato]**
+
+Baixe estes **quatro** arquivos (o de alfabetização não é usado):
+
+| Arquivo no IBGE | Conteúdo | Versão usada |
+|---|---|---|
+| `Agregados_por_setores_basico_BR_20260520.zip` | Tabela Básico (identificação dos setores, municípios e totais) | 20/05/2026 |
+| `Agregados_por_setores_caracteristicas_domicilio1_BR_20261021.zip` | Características dos Domicílios 1 | 21/10/2026 |
+| `Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.zip` | Características dos Domicílios 2 | 17/04/2025 |
+| `Agregados_por_setores_caracteristicas_domicilio3_BR_20250417.zip` | Características dos Domicílios 3 | 17/04/2025 |
+
+> A data no nome do arquivo indica a versão publicada pelo IBGE. Se houver uma versão mais recente, os resultados podem diferir ligeiramente dos apresentados.
+
+### 2. Descompacte e renomeie
+
+Descompacte os quatro arquivos e salve as tabelas na pasta `data/` com estes nomes:
+
+```
+data/
+├── basico.csv
+├── domicilio1.csv
+├── domicilio2.csv
+└── domicilio3.csv
+```
+
+Os notebooks esperam arquivos `.csv` com separador `;` e codificação `latin1` (padrão do IBGE). Se os arquivos baixados estiverem em outro formato ou separador, ajuste os parâmetros `SEP` e `ENCODING` no início do notebook `BD_setores_RMSP.ipynb`.
 
 ## Estrutura do projeto
 
@@ -29,13 +55,6 @@ ad_cidadesp/
 ├── .gitignore
 └── README.md
 ```
-
-## Como rodar
-
-1. Baixe a base consolidada (link acima) e salve como `data/setores_censitarios_sp_capital.csv`
-2. Abra e rode o notebook `AN_KMEANS_SP.ipynb`, célula por célula, do início ao fim (ou use "Run All" após reiniciar o kernel)
-
-> Caso queira reproduzir a etapa de consolidação a partir dos dados brutos do IBGE, o script `filtrar_setores_sp.py` está disponível neste repositório — mas não é necessário se você já tem a base consolidada.
 
 ## Metodologia (resumo)
 
@@ -53,6 +72,4 @@ ad_cidadesp/
 pip install pandas numpy scikit-learn matplotlib seaborn plotly geobr geopandas
 ```
 
-## Status
 
-🚧 Em desenvolvimento.
